@@ -1,0 +1,29 @@
+{
+  "font": "BebasNeue.ttf",
+  "size": 100,
+  "transition": "DEFAULT",
+  "displayTime": 5,
+  "intervalTime": 2,
+  "djs": [
+    {
+      "name": "L'LAMA",
+      "from": "18:05",
+      "to": "21:55"
+    },
+    {
+      "name": "8DJ1",
+      "from": "22:05",
+      "to": "23:55"
+    },
+    {
+      "name": "DJ2",
+      "from": "00:05",
+      "to": "00:55"
+    },
+    {
+      "name": "D31",
+      "from": "01:05",
+      "to": "01:55"
+    }
+  ]
+}
