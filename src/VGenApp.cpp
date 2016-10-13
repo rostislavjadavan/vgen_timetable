@@ -17,7 +17,6 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-static const bool PREMULT = false;
 static const int APP_WIDTH = 800;
 static const int APP_HEIGHT = 600;
 
@@ -73,9 +72,9 @@ void VGenApp::draw()
 	glClear( GL_COLOR_BUFFER_BIT );
 	gl::setMatricesWindow(getWindowSize());
 
-	gl::enableAlphaBlending( PREMULT );
+	gl::enableAlphaBlending(false);
 
-	gl::color( Color::white() );
+	gl::color(Color::white());
 	mTexture = textRender.render(timer.getTime(), timer.getGlobalTime());
 	float posX = mTexture->getBounds().getCenter().x;
 	float posY = mTexture->getBounds().getCenter().y;

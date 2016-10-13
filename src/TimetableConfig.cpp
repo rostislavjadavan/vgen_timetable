@@ -35,7 +35,15 @@ bool TimetableConfig::load(string filename) {
 ConfigDj TimetableConfig::findDjByTime(int time)
 {
 	for (ConfigDj dj : this->djs) {
-		if (time > dj.getTimeFrom() && time < dj.getTimeTo()) {
+		int from = dj.getTimeFrom();
+		int to = dj.getTimeTo();
+
+		if (from > to) {
+			if (time > from && time < 24 * 60 * 60 || time > 0 && time < to) {
+				return dj;
+			}
+		}
+		else if (time > from  && time < to) {
 			return dj;
 		}
 	}

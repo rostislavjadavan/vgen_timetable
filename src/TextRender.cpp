@@ -50,6 +50,9 @@ gl::TextureRef TextRender::render(double t, int globalTime)
 vector<string> TextRender::getDebug()
 {
 	vector<string> out;
+	if (this->currentDj.isLoaded()) {
+		out.push_back("textrender.current_dj=" + currentDj.name);
+	}
 	for (ConfigDj dj : config.djs) {
 		out.push_back("textrender.config.dj=" + dj.name + ", from:" + toString(dj.getTimeFrom()) + ", to: " + toString(dj.getTimeTo()));
 	}

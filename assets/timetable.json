@@ -5,9 +5,14 @@
   "displayTime": 5,
   "intervalTime": 2,
   "djs": [
+     {
+      "name": "MIDNIGHT",
+      "from": "23:05",
+      "to": "01:55"
+    },
     {
       "name": "L'LAMA",
-      "from": "18:05",
+      "from": "11:05",
       "to": "21:55"
     },
     {
