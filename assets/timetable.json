@@ -1,8 +1,8 @@
 {
   "font": "BebasNeue.ttf",
   "size": 100,
-  "transition": "DEFAULT",
-  "displayTime": 5,
+  "transitionTime":  1,
+  "displayTime": 2,
   "intervalTime": 2,
   "djs": [
      {

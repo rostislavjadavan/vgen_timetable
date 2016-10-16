@@ -12,17 +12,39 @@ gl::TextureRef TextRender::render(double t, int globalTime)
 	TextLayout layout;
 	layout.clear(ColorA(0.0f, 0.0f, 0.0f, 0.0f));	
 	layout.setFont(font);
-	layout.setColor(Color(1.0f, 1.0f, 1.0f));
 	
 	double delta;
 	switch (this->animationState)
 	{		
+		case TRS_TEXT_IN:
+			delta = t - this->startTime;
+			if (this->currentDj.isLoaded()) {
+				layout.setColor(ColorA(1.0f, 1.0f, 1.0f, (float)delta / (float)this->config.transitionTime));
+				layout.addCenteredLine(currentDj.name);
+			}			
+			if (delta > this->config.transitionTime) {
+				this->startTime = t;
+				this->animationState = TRS_TEXT;
+			}
+			break;
 		case TRS_TEXT:
 			if (this->currentDj.isLoaded()) {
+				layout.setColor(ColorA(1.0f, 1.0f, 1.0f, 1.0f));
 				layout.addCenteredLine(currentDj.name);
 			}
 			delta = t - this->startTime;
 			if (delta > this->config.displayTime) {
+				this->startTime = t;
+				this->animationState = TRS_TEXT_OUT;
+			}
+			break;
+		case TRS_TEXT_OUT:
+			delta = t - this->startTime;
+			if (this->currentDj.isLoaded()) {
+				layout.setColor(ColorA(1.0f, 1.0f, 1.0f, 1.0f - (float)delta / (float)this->config.transitionTime));
+				layout.addCenteredLine(currentDj.name);
+			}
+			if (delta > this->config.transitionTime) {
 				this->startTime = t;
 				this->animationState = TRS_BLANK;
 			}
@@ -31,14 +53,14 @@ gl::TextureRef TextRender::render(double t, int globalTime)
 			delta = t - this->startTime;
 			if (delta > this->config.intervalTime) {
 				this->startTime = t;
-				this->animationState = TRS_TEXT;
+				this->animationState = TRS_TEXT_IN;
 				this->currentDj = this->config.findDjByTime(globalTime);
 			}
 			break;		
 		default:
 		case TRS_INIT:
 			this->currentDj = this->config.findDjByTime(globalTime);
-			this->animationState = TRS_TEXT;
+			this->animationState = TRS_TEXT_IN;
 			this->startTime = t;
 			break;
 	}	

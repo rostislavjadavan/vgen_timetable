@@ -38,6 +38,7 @@ class TimetableConfig {
 public:
 	string fontName;
 	int fontSize;
+	int transitionTime;
 	int displayTime, intervalTime;
 	vector<ConfigDj> djs;		
 

@@ -7,6 +7,7 @@ bool TimetableConfig::load(string filename) {
 
 		fontName = jsonTree.hasChild("font") ? jsonTree.getValueForKey<string>("font") : "BebasNeue.ttf";
 		fontSize = jsonTree.hasChild("size") ? jsonTree.getValueForKey<int>("size") : 40;
+		transitionTime = jsonTree.hasChild("transitionTime") ? jsonTree.getValueForKey<int>("transitionTime") : 2;
 		displayTime = jsonTree.hasChild("displayTime") ? jsonTree.getValueForKey<int>("displayTime") : 30;
 		intervalTime = jsonTree.hasChild("intervalTime") ? jsonTree.getValueForKey<int>("intervalTime") : 600;
 

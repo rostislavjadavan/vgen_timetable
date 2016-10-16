@@ -9,7 +9,7 @@ using namespace std;
 using namespace ci;
 
 enum TextRenderStates {
-	TRS_INIT, TRS_TEXT, TRS_BLANK
+	TRS_INIT, TRS_TEXT_IN, TRS_TEXT_OUT, TRS_TEXT, TRS_BLANK
 };
 
 class TextRender {
