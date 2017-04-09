@@ -12,13 +12,14 @@
 #include "TextRender.h"
 #include "Console.h"
 #include "AppTimer.h"
+#include "UI.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-static const int APP_WIDTH = 800;
-static const int APP_HEIGHT = 600;
+static const int APP_WIDTH = 512;
+static const int APP_HEIGHT = 512;
 
 class VGenApp : public App {
  public:
@@ -53,6 +54,8 @@ void VGenApp::shutdown()
 	spoutsender.ReleaseSender();
 }
 
+
+
 void VGenApp::setup()
 {
 	TimetableConfig config;
@@ -61,7 +64,12 @@ void VGenApp::setup()
 	
 	spoutTexture = gl::Texture2d::create(APP_WIDTH, APP_HEIGHT);
 	strcpy_s(SenderName, "vgen.timetable");
+
+	spoutsender.SetDX9(true);
 	bInitialized = spoutsender.CreateSender(SenderName, APP_WIDTH, APP_HEIGHT);	
+	bMemoryMode = spoutsender.GetMemoryShareMode();
+
+	UI::getInstance()->open();
 
 	timer.start();
 }
